@@ -25,6 +25,7 @@ bcolors = {
 	'WARN': '\033[33m  ',
 	'INFO': '[i]'
 }
+version = "0.4.19"
 query_count = 0 # stupid globals
 db_user = "" # Neo4J Username
 db_passwd = "" # Neo4J Password
@@ -75,6 +76,7 @@ else:
 			csv_reader = csv.reader(cmedb_csv, delimiter=',')
 			try:
 				for row in csv_reader:
+					if user == "": continue
 					if (row[1].lower() == sys.argv[2].lower()) and not "$" in row[2]:
 						# open users.json and get actual username for SID:
 						update_user = "" # define this.
@@ -87,6 +89,7 @@ else:
 									break
 						if update_user == "":
 							print(f"{bcolors['WARN']} Could not find user: {row[2]} in file {sys.argv[4]} {bcolors['ENDC']}")
+							continue
 						else:
 							try:
 								query_obj = BloodHoundUpdate(db_server_address, db_user, db_passwd)
@@ -114,6 +117,7 @@ else:
 				print(f"{bcolors['OKGREEN']} Using fqdn domain: {bcolors['GREEN']}{sys.argv[2]}{bcolors['ENDC']}.\n")
 				with open(sys.argv[3]) as all_users:
 					for user in all_users:
+						if user == "": continue
 						update_user = "" # define this
 						try:
 							user = user.rstrip() # drop newline
@@ -126,6 +130,7 @@ else:
 										break
 							if update_user == "":
 								print(f"{bcolors['WARN']} Could not find user: {user} in file {sys.argv[4]} {bcolors['ENDC']}")
+								continue
 							query_obj = BloodHoundUpdate(db_server_address, db_user, db_passwd)
 							query_obj.query(update_user)
 							query_obj.close()
@@ -139,7 +144,7 @@ else:
 								print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly.\n")
 								sys.exit(1)
 							elif "ailed to establish connection":
-								print(f"{bcolors['FAIL']} Cannot connect to Neo4J Server at {db_server_address}\n")
+								print(f"{bcolors['FAIL']} Cannot connect to Neo4J Server at {db_server_address}\n Ensure that the service is running on that host before continuing.{bcolors['ENDC']}")
 								sys.exit(1)
 
 print(f"\n{bcolors['OKGREEN']} Completed. {bcolors['GREEN']}{query_count}{bcolors['ENDC']} records updated to \"owned\".\n ")
