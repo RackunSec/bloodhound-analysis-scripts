@@ -26,8 +26,9 @@ bcolors = {
 	'INFO': '[i]'
 }
 query_count = 0 # stupid globals
-db_user = "" # Neo4J username
+db_user = "" # Neo4J Username
 db_passwd = "" # Neo4J Password
+db_server_address = "bolt://127.0.0.1:7687" # Neo4J URI
 # Check arguments:
 def usage(error):
 	print(f"[i] Error: {error}")
@@ -88,12 +89,21 @@ else:
 							print(f"{bcolors['WARN']} Could not find user: {row[2]} in file {sys.argv[4]} {bcolors['ENDC']}")
 						else:
 							try:
-								query_obj = BloodHoundUpdate("bolt://localhost:7687", db_user, db_passwd)
+								query_obj = BloodHoundUpdate(db_server_address, db_user, db_passwd)
 								query_obj.query(update_user)
 								query_obj.close()
 								query_count += 1
 							except Exception as e:
-								print(f"{bcolors['WARN']} Issue with user: {update_user}: {e} {bcolors['ENDC']}")
+								print(f"{bcolors['WARN']} Issue with query: {update_user}: {e} {bcolors['ENDC']}")
+								if "authentication details too many times in a row" in str(e):
+									print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly. You may have been locked out.\n")
+									sys.exit(1)
+								elif "authentication failure" in str(e):
+									print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly.\n")
+									sys.exit(1)
+								elif "ailed to establish connection":
+									print(f"{bcolors['FAIL']} Cannot connect to Neo4J Server at {db_server_address}\n")
+									sys.exit(1)
 			#except Exception as e: # debug
 			except Exception as e:
 				print(e) # debug
@@ -116,11 +126,20 @@ else:
 										break
 							if update_user == "":
 								print(f"{bcolors['WARN']} Could not find user: {user} in file {sys.argv[4]} {bcolors['ENDC']}")
-							query_obj = BloodHoundUpdate("bolt://localhost:7687", db_user, db_passwd)
+							query_obj = BloodHoundUpdate(db_server_address, db_user, db_passwd)
 							query_obj.query(update_user)
 							query_obj.close()
 							query_count += 1
 						except Exception as e:
-							print(f"{bcolors['WARN']} Issue with user: {update_user}: {e} {bcolors['ENDC']}")
+							print(f"{bcolors['WARN']} Issue with query: {update_user}: {e} {bcolors['ENDC']}")
+							if "authentication details too many times in a row" in str(e):
+								print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly. You may have been locked out.\n")
+								sys.exit(1)
+							elif "authentication failure" in str(e):
+								print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly.\n")
+								sys.exit(1)
+							elif "ailed to establish connection":
+								print(f"{bcolors['FAIL']} Cannot connect to Neo4J Server at {db_server_address}\n")
+								sys.exit(1)
 
 print(f"\n{bcolors['OKGREEN']} Completed. {bcolors['GREEN']}{query_count}{bcolors['ENDC']} records updated to \"owned\".\n ")
