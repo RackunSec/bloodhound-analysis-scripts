@@ -25,7 +25,7 @@ bcolors = {
 	'WARN': '\033[33m  ',
 	'INFO': '[i]'
 }
-version = "0.4.19"
+version="0.4.19.2"
 query_count = 0 # stupid globals
 db_user = "" # Neo4J Username
 db_passwd = "" # Neo4J Password
@@ -76,7 +76,7 @@ else:
 			csv_reader = csv.reader(cmedb_csv, delimiter=',')
 			try:
 				for row in csv_reader:
-					if user == "": continue
+					if row[2] == "": continue
 					if (row[1].lower() == sys.argv[2].lower()) and not "$" in row[2]:
 						# open users.json and get actual username for SID:
 						update_user = "" # define this.
