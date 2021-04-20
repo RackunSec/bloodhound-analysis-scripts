@@ -28,3 +28,9 @@ In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-
 ```bash
 root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
 ```
+---
+### Quickly List All Domain Admins
+Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/domain_admins.py) to quickly list out all of the domain adminsdiscovered by the BloodHound Collector, from the command line.
+```bash
+root@demon:~# python3 domain_admins.py | tee -a domain-admins.txt
+```
