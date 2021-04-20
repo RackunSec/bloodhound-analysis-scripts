@@ -24,6 +24,7 @@ Ever wanted to quickly target any account that had say,
  * "admin"
  * "administrator"
  * etc
+
 In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/admin_usernames.py) to do just that. You simply pass it the users.json file that BloodHound Collectors create and it will parse out the JSON using Python magic.
 ```bash
 root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
