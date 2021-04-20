@@ -20,10 +20,9 @@ root@demon:~# python3 import_pwn3d.py (cmedb|file) (filter domain) (export file)
 ---
 ### Search All Users for "admin" in their Name
 Ever wanted to quickly target any account that had say,
- * "-admin"
- * "admin"
+ * "-admin";
+ * "admin"; or
  * "administrator"
- * etc
 
 In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/admin_usernames.py) to do just that. You simply pass it the users.json file that BloodHound Collectors create and it will parse out the JSON using Python magic.
 ```bash
