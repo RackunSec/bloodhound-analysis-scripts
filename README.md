@@ -2,6 +2,7 @@
 Reads JSON files and Neo4J data from [BloodHound Collector](https://github.com/BloodHoundAD) and prints data to the terminal. This can be useful for quickly identifying high value targets. Use these lists for password spraying, phishing, or anything your imagination can come up with against your target client (if it's in scope!). This project is a work-in-progress but I will only push updates when I have tested each new update or script to ensure a deliverable. 
 ## Scripts
 Below we will cover a few of the *most used* scripts in this library. If you'd like to see new functionality, please fee free to send me an email with your idea.
+
 ---
 ### Bulk Update Owned Users
 [This script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/bulk_update_owned_users.py) takes a file of users, [cmedb](https://github.com/byt3bl33d3r/CrackMapExec) export (CSV or line by line file from [Hashcat](https://hashcat.net/hashcat/) output, etc), and updates their record in the Neo4J BloodHound database as "owned." 
