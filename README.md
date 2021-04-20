@@ -4,7 +4,7 @@ Reads JSON files and Neo4J data from [BloodHound Collector](https://github.com/B
 Below we will cover a few of the *most used* scripts in this library. If you'd like to see new functionality, please fee free to send me an email with your idea.
 
 ---
-### Bulk Update Owned Users
+### SCRIPT: Bulk Update Owned Users
 [This script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/bulk_update_owned_users.py) takes a file of users, [cmedb](https://github.com/byt3bl33d3r/CrackMapExec) export (CSV or line by line file from [Hashcat](https://hashcat.net/hashcat/) output, etc), and updates their record in the Neo4J BloodHound database as "owned." 
 
 Let's say you got a lot of creds during the external phase of the penetration test from pihshing and password spraying. You get access to the internal network and use BloodHound collector(s) to pull data from the domain controller with the creds you have. Often times, your next step is to start doing research on those creds to find the quickest path to the domain admins group. Before I made this script, I had to search each one in BloodHound and right click and "Mark as owned". Well, this script makes this job quick and painless by doing that all at once and going straight to the source. The BloodHound UI will be updated immediately (well, you may have to re-search for the current user you have open).
@@ -68,7 +68,7 @@ Try cleaning the file with "cat exported-creds-bad-chars.csv|tr -cd '\11\12\15\4
  root@demon:~# 
 ```
 ---
-### Search All Users for "admin" in their Name
+### SCRIPT: Search All Users for "admin" in their Name
 Ever wanted to quickly target any account that had say,
  * "-admin";
  * "admin"; or
@@ -79,7 +79,7 @@ In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-
 root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
 ```
 ---
-### Quickly List All Domain Admins
+### SCRIPT: Quickly List All Domain Admins
 Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/domain_admins.py) to quickly list out all of the domain adminsdiscovered by the BloodHound Collector, from the command line.
 ```bash
 root@demon:~# python3 domain_admins.py | tee -a domain-admins.txt
