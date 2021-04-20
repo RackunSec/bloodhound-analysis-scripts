@@ -76,6 +76,7 @@ Ever wanted to quickly target any account that had say,
  * "administrator"
 
 In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/admin_usernames.py) to do just that. You simply pass it the users.json file that BloodHound Collectors create and it will parse out the JSON using Python magic.
+
 ***Usage:***
 ```bash
 root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
@@ -83,6 +84,7 @@ root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
 ---
 ### SCRIPT: Quickly List All Domain Admins
 Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/domain_admins.py) to quickly list out all of the domain adminsdiscovered by the BloodHound Collector, from the command line.
+
 ***Usage:***
 ```bash
 root@demon:~# python3 domain_admins.py | tee -a domain-admins.txt
