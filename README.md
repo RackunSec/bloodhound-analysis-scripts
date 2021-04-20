@@ -17,6 +17,30 @@ Let's say you got a lot of creds during the external phase of the penetration te
 ```bash
 root@demon:~# python3 import_pwn3d.py (cmedb|file) (filter domain) (export file) (path to users.json)")
 ```
+example:
+```
+python3 import_pwn3d.py cmedb prison exported-creds.csv path/to/users.json
+
+ ✔  Using export cmedb CSV file: exported-creds.csv.
+ ✔  Importing pwn3d users from cmedb export.
+ ✔  Filtering domain: prison.
+
+ ✔  Updating user: username1@prison.local
+   Could not find user: bad_username in file users.json 
+ ✔  Updating user: username2@prison.local
+ ✔  Updating user: username3@prison.local
+ ✔  Updating user: username4@prison.local
+ ✔  Updating user: username5@prison.local
+ ✔  Updating user: username6@prison.local
+ ✔  Updating user: username7@prison.local
+ ✔  Updating user: username8@prison.local
+ ✔  Updating user: username9@prison.local
+ ✔  Updating user: username10@prison.local
+ ✔  Updating user: username11@prison.local
+
+ ✔  Completed. 11 records updated to "owned".
+
+```
 ---
 ### Search All Users for "admin" in their Name
 Ever wanted to quickly target any account that had say,
