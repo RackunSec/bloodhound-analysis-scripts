@@ -3,7 +3,7 @@ Reads JSON files and Neo4J data from [BloodHound Collector](https://github.com/B
 ## Scripts
 ### Bulk Update Owned Users
 [This script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/bulk_update_owned_users.py) takes a file of users, [cmedb](https://github.com/byt3bl33d3r/CrackMapExec) export (CSV or line by line file from [Hashcat](https://hashcat.net/hashcat/) output, etc), and updates their record in the Neo4J BloodHound database as "owned." 
-Let's say you got a lot of creds during the external phase of the penetration test from pihshing and password spraying. You get access to the internal network and use BloodHound collector(s) to pull data from the domain controller with the creds you have. Often times, your next step is to start doing research on those creds to find the quicckest path to the domain admins group. This script makes this job quick and painless.
+Let's say you got a lot of creds during the external phase of the penetration test from pihshing and password spraying. You get access to the internal network and use BloodHound collector(s) to pull data from the domain controller with the creds you have. Often times, your next step is to start doing research on those creds to find the quickest path to the domain admins group. Before I made this script, I had to search each one in BloodHound and right click and "Mark as owned". Well, this script makes this job quick and painless by doing that all at once and going straight to the source. The BloodHound UI will be updated immediately (well, you may have to re-search for the current user you have open).
 #### Usage
 1. Edit the scripe to have your Neo4J username and password. Then set your Neo4J hostname. 
 2. Run the script with the following arguments
