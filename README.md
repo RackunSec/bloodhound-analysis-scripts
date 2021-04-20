@@ -19,14 +19,14 @@ root@demon:~# python3 import_pwn3d.py (cmedb|file) (filter domain) (export file)
 ```
 example:
 ```
-python3 import_pwn3d.py cmedb prison exported-creds.csv path/to/users.json
+root@demon:~# python3 import_pwn3d.py cmedb prison exported-creds.csv path/to/users.json
 
  ✔  Using export cmedb CSV file: exported-creds.csv.
  ✔  Importing pwn3d users from cmedb export.
  ✔  Filtering domain: prison.
 
  ✔  Updating user: username1@prison.local
-   Could not find user: bad_username in file users.json 
+   Could not find user: bad_username in file path/to/users.json 
  ✔  Updating user: username2@prison.local
  ✔  Updating user: username3@prison.local
  ✔  Updating user: username4@prison.local
@@ -39,7 +39,8 @@ python3 import_pwn3d.py cmedb prison exported-creds.csv path/to/users.json
  ✔  Updating user: username11@prison.local
 
  ✔  Completed. 11 records updated to "owned".
-
+ 
+root@demon:~# 
 ```
 ---
 ### Search All Users for "admin" in their Name
