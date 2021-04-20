@@ -10,7 +10,8 @@ Below we will cover a few of the *most used* scripts in this library. If you'd l
 Let's say you got a lot of creds during the external phase of the penetration test from pihshing and password spraying. You get access to the internal network and use BloodHound collector(s) to pull data from the domain controller with the creds you have. Often times, your next step is to start doing research on those creds to find the quickest path to the domain admins group. Before I made this script, I had to search each one in BloodHound and right click and "Mark as owned". Well, this script makes this job quick and painless by doing that all at once and going straight to the source. The BloodHound UI will be updated immediately (well, you may have to re-search for the current user you have open).
 
 Each username is verified in the users.json file using regexp before making the Neo4J database connection and query. 
-#### Usage
+***Usage:***
+
 1. Edit the scripe to have your Neo4J username and password. Then set your Neo4J hostname. 
 2. Run the script with the following arguments
    1. What type of file is it? CrackMapExec database export, or line by line list of usernames?
@@ -75,12 +76,14 @@ Ever wanted to quickly target any account that had say,
  * "administrator"
 
 In the name? Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/admin_usernames.py) to do just that. You simply pass it the users.json file that BloodHound Collectors create and it will parse out the JSON using Python magic.
+***Usage:***
 ```bash
 root@demon:~# python3 admin_usernames.py | tee -s admin-users.txt
 ```
 ---
 ### SCRIPT: Quickly List All Domain Admins
 Use [this script](https://github.com/RackunSec/bloodhound-analysis-scripts/blob/main/domain_admins.py) to quickly list out all of the domain adminsdiscovered by the BloodHound Collector, from the command line.
+***Usage:***
 ```bash
 root@demon:~# python3 domain_admins.py | tee -a domain-admins.txt
 ```
