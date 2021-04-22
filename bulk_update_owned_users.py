@@ -14,6 +14,7 @@ import sys # for argv and exit
 import json # for users.json file
 import re # for matching usernames from cmedb to actual DC data
 import os # for errors
+import codecs # for Windows-specific BloodHound Collector's JSON files.
 #
 # Color:
 bcolors = {
@@ -82,7 +83,8 @@ else:
 						update_user = "" # define this.
 						with open(sys.argv[4]) as users_json:
 							json_users = users_json.read()
-							json_dict = json.loads(json_users)
+                            decoded_users=codecs.decode(json_users.encode(), 'utf-8-sig')
+							json_dict = json.loads(decoded_users)
 							for obj in json_dict['users']:
 								if re.match(f"^{row[2]}@".lower(),str(obj['Properties']['name']).lower()):
 									update_user = obj['Properties']['name']
