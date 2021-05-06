@@ -43,7 +43,7 @@ elif sys.argv[1] != "cmedb" and sys.argv[1] != "file":
 else:
 	class BloodHoundUpdate:
 		def __init__(self, uri, user, password):
-			self.driver = GraphDatabase.driver(uri, auth=(user, password))
+			self.driver = GraphDatabase.driver(uri, auth=(user, password), encypted=false) # fix for update to neo4j modules
 
 		def close(self):
 			self.driver.close()
@@ -106,8 +106,11 @@ else:
 								elif "authentication failure" in str(e):
 									print(f"{bcolors['FAIL']} Please ensure that you have set your password correctly.\n")
 									sys.exit(1)
-								elif "ailed to establish connection":
+								elif "ailed to establish connection" in str(e):
 									print(f"{bcolors['FAIL']} Cannot connect to Neo4J Server at {db_server_address}\n")
+									sys.exit(1)
+								else:
+									print(f"{bcolor['FAIL']} What happened?")
 									sys.exit(1)
 			#except Exception as e: # debug
 			except Exception as e:
