@@ -19,15 +19,40 @@ Each username is verified in the users.json file using regexp before making the 
    3. The export file/file name
    4. The path to your users.json file that BloodHound collectors create.
 ```bash
-root@demon:~# python3 import_pwn3d.py (cmedb|file) (filter domain) (export file) (path to users.json)")
+root@demon:~# python3 bulk_update_owned_users.py ("cmedb"|"file") (filter domain) (export file) (path to users.json)
 ```
-***Example:***
+***CMEDB Dump Example:***
 ```bash
-root@demon:~# python3 import_pwn3d.py cmedb prison exported-creds.csv path/to/users.json
+root@demon:~# python3 bulk_update_owned_users.py cmedb prison exported-creds.csv path/to/users.json
 
  ✔  Using export cmedb CSV file: exported-creds.csv.
  ✔  Importing pwn3d users from cmedb export.
  ✔  Filtering domain: prison.
+
+ ✔  Updating user: username1@prison.local
+   Could not find user: bad_username in file path/to/users.json 
+ ✔  Updating user: username2@prison.local
+ ✔  Updating user: username3@prison.local
+ ✔  Updating user: username4@prison.local
+ ✔  Updating user: username5@prison.local
+ ✔  Updating user: username6@prison.local
+ ✔  Updating user: username7@prison.local
+ ✔  Updating user: username8@prison.local
+ ✔  Updating user: username9@prison.local
+ ✔  Updating user: username10@prison.local
+ ✔  Updating user: username11@prison.local
+
+ ✔  Completed. 11 records updated to "owned".
+ 
+root@demon:~# 
+```
+***FILE Dump Example:***
+```bash
+root@demon:~# python3 bulk_update_owned_users.py file prison.local exported-creds.csv path/to/users.json
+
+ ✔  Using export file: exported-creds.csv.
+ ✔  Importing pwn3d users from file.
+ ✔  Filtering domain: prison.local
 
  ✔  Updating user: username1@prison.local
    Could not find user: bad_username in file path/to/users.json 
