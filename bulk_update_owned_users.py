@@ -43,7 +43,7 @@ elif sys.argv[1] != "cmedb" and sys.argv[1] != "file":
 else:
     class BloodHoundUpdate:
     	def __init__(self, uri, user, password):
-    		self.driver = GraphDatabase.driver(uri, auth=(user, password), encypted=False) # fix for update to neo4j modules
+    		self.driver = GraphDatabase.driver(uri, auth=(user, password), encrypted=False) # fix for update to neo4j modules
 
     	def close(self):
     		self.driver.close()
